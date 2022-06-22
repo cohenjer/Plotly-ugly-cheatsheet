@@ -1,6 +1,10 @@
 import plotly.express as px
 import pandas as pd
 
+# Specifying default templates for all subsequent plots
+import plotly.io as pio
+pio.templates.default= "plotly"
+
 # if needed, import the data
 df = pd.read_pickle("my_xp_results.pkl")
 
@@ -62,7 +66,8 @@ fig.update_layout(
     # not shown below
     colorscale_diverging=[[0,"#051017"],[0.5,"#ffffff"],[1,"#000000"]],    
     colorway=["#ffffff","#1f77b4", "#000000"], # change default trace color values
-    # what does this do exactly??
+    # this updates the defaults colors, but traces have already been assigned colors
+    # more useful for templating
     
     # Template
     template="plotly_white",  #['ggplot2', 'seaborn', 'simple_white', 'plotly',
@@ -166,7 +171,10 @@ for i,ann in enumerate(fig.layout.annotations):
 # to add an annotation,
 # fig.add_annotation()
 
-#print(fig)
+#############################
+# Plotting
+
+print(fig)
 
 #
 fig.show()
