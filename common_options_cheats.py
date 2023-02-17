@@ -41,6 +41,8 @@ fig.update_layout(
     legend_font_family="Comic Sans", 
     legend_title_font_size=10,
     legend_title_text="Name of the Algorithm",
+    # To change the name of title for the legend
+    # in the px.plot call: labels={"sex": "Gender", "smoker": "Smokes"}
     legend_x=-0.5, # x position in [-2,3] normalized so that borders are [0,1]
     legend_y=0, # y position in [-2,3]
     
@@ -73,11 +75,23 @@ fig.update_layout(
     template="plotly_white",  #['ggplot2', 'seaborn', 'simple_white', 'plotly',
          #'plotly_white', 'plotly_dark', 'presentation', 'xgridoff',
          #'ygridoff', 'gridon', 'none']
+
+    # Subplots
+    # We can use the update_xaxes or update_yaxis syntax, but this also works for a quick fix:
+    xaxis1=dict(range=[0,0.2], title_text="Time (s)"),
+    xaxis2=dict(range=[0,0.3], title_text="Time (s)"),
+    xaxis3=dict(range=[0,0.2]),
+    xaxis4=dict(range=[0,0.3]),
+    yaxis1=dict(title_text="Fit"),
+    yaxis3=dict(title_text="Fit")
     
 )
 
 # Axes
-# for subplots: 1st subplot is xaxis,xaxis2... but xaxes is all subplots
+# for subplots: 1st subplot is layout_xaxis1, layout_xaxis2... but xaxes is all subplots
+# subplot numbering is
+# 3 4
+# 1 2
 fig.update_xaxes(    
     #documentation: update_xaxis
     
@@ -117,6 +131,9 @@ fig.update_xaxes(
     # Numbers of the top/on the right (for y axis)
     mirror=False, # True, "ticks", "all", "allticks", False 
     
+    # decouple axes scales
+    matches=False,
+
     # misc
     visible=True,
     zeroline=False, # puts a line at 0
@@ -150,10 +167,14 @@ fig.update_traces(
     marker_size=8, # in px
     marker_symbol="bowtie", # large choice, check update trace doc
     # for line plots, check marker_colorbar
+
+    # For error bars (works for assymetric as well)
+    error_y_thickness = 0.2, # changes the width of error bars in line plots (and boxplots?)
     
     # box things, also for line plots
     line_color="#ff0000", # color of boxes (bounding lines, also changes inside)
-    fillcolor="#0000ff"
+    fillcolor="#0000ff",
+    line_width=1,
     # line_dash...
 )
 
@@ -170,6 +191,7 @@ for i,ann in enumerate(fig.layout.annotations):
     ann.text="Plot_"+str(i) 
 # to add an annotation,
 # fig.add_annotation()
+
 
 #############################
 # Plotting
