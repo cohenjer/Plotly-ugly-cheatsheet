@@ -26,19 +26,19 @@ fig = px.box(df, x='algorithm', y='final_rec_error',
 fig.update_layout(
     # Check doc on plotly, update_layout. Actually quite clear but long
     # Title things
-    title_font_size=25, # font size
-    title_text="C'est stylé", # title
-    title_x=.1, # position [0,1]
-    title_yanchor="bottom", #anchor position, ["top","middle","bottom","auto"]
+    title_font_size=25,  # font size
+    title_text="C'est stylé",  # title
+    title_x=.1,  # position [0,1]
+    title_yanchor="bottom",  # anchor position, ["top","middle","bottom","auto"]
     
     # Legend things
     showlegend=True,
-    legend_bgcolor="#eeeeee", # RBG, all formats accepted, here Hex
+    legend_bgcolor="#eeeeee",  # RBG, all formats accepted, here Hex
     legend_bordercolor="#000000",
-    legend_borderwidth=2, # a bit useless 
-    legend_font_size=20, # fonts always have these 3 options
+    legend_borderwidth=2,  # a bit useless 
+    legend_font_size=20,  # fonts always have these 3 options
     legend_font_color="black",
-    legend_font_family="Comic Sans", 
+    legend_font_family="Comic Sans",
     legend_title_font_size=10,
     legend_title_text="Name of the Algorithm",
     # To change the name of title for the legend
@@ -96,47 +96,47 @@ fig.update_xaxes(
     #documentation: update_xaxis
     
     # axis line property
-    color="#ff0000", # changes all colors associated (lines, ticks, grids, text)
-    linecolor="#aa0123", # only the line axis color
+    color="#ff0000",  # changes all colors associated (lines, ticks, grids, text)
+    linecolor="#aa0123",  # only the line axis color
     linewidth=10,
     showline=True,
-    type="category", # "-", "log","linear","category","date"
+    type="category",  # "-", "log","linear","category","date"
     
     # Ticks things and grids
-    nticks=2, # number of ticks
+    nticks=2,  # number of ticks
     #range=[0,1], # range of the ticks
     # care for log, and category is mapped to ints (but does not show in this eg)
     # Also affects yrange??
-    dtick=1, # distance between ticks, not so useful for category
-    showspikes=True, # shows the small tick lines
+    dtick=1,  # distance between ticks, not so useful for category
+    showspikes=True,  # shows the small tick lines
     showticklabels=True,
     tickcolor="#000000",
-    ticklen=5, # length of ticks in px
-    tickfont_size=8, # size of text of ticks, other txt options same format
+    ticklen=5,  # length of ticks in px
+    tickfont_size=8,  # size of text of ticks, other txt options same format
     # Changing the ticks text is a little bit of work
     # first change ticks type to array, then update text and place them correctly
     tickmode="array",
-    tickvals=[0,1], # list with the positions of the ticks
-    ticktext=["Aliens","Me"],
+    tickvals=[0,1],  # list with the positions of the ticks
+    ticktext=["Aliens", "Me"],
     
     # axes title
-    title_font_size=13, # same story as other fonts specs
-    title_text="", # always put name on axes !!
+    title_font_size=13,  # same story as other fonts specs
+    title_text="",  # always put name on axes !!
     
     # grid
     gridcolor="#ffffff",
-    gridwidth=1, # activates the grid for boxplot
-    showgrid=True, # overwrites above if False
+    gridwidth=1,  # activates the grid for boxplot
+    showgrid=True,  # overwrites above if False
     
     # Numbers of the top/on the right (for y axis)
-    mirror=False, # True, "ticks", "all", "allticks", False 
+    mirror=False,  # True, "ticks", "all", "allticks", False 
     
     # decouple axes scales
-    matches=False,
+    #matches=False,
 
     # misc
     visible=True,
-    zeroline=False, # puts a line at 0
+    zeroline=False,  # puts a line at 0
     zerolinewidth=0
 )
 
@@ -169,7 +169,7 @@ fig.update_traces(
     # for line plots, check marker_colorbar
 
     # For error bars (works for assymetric as well)
-    error_y_thickness = 0.2, # changes the width of error bars in line plots (and boxplots?)
+    #error_y_thickness = 0.2, # changes the width of error bars in line plots (and boxplots?)
     
     # box things, also for line plots
     line_color="#ff0000", # color of boxes (bounding lines, also changes inside)
@@ -187,10 +187,15 @@ fig.update_annotations(
 )
 # To update annotations for each subplot, we can loop over annotations
 # and manually edit (sigh...)
-for i,ann in enumerate(fig.layout.annotations):
-    ann.text="Plot_"+str(i) 
+# an exemple for subplot titles:
+for i, ann in enumerate(fig.layout.annotations):
+    ann.text="Plot_"+str(i)
 # to add an annotation,
 # fig.add_annotation()
+
+# Adding shapes directly with figure methods
+# Specify row and col for plotting in a specific subplot
+fig.add_hline(y=0.5, line_dash="dot", row=1, col=1, line_color="#000000", line_width=2)
 
 
 #############################

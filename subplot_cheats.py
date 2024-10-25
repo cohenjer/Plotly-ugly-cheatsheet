@@ -16,5 +16,14 @@ fig = px.box(df, x='algorithm', y='final_rec_error',
 # 3 4
 # 1 2
 
+# To update annotations for each subplot, we can loop over annotations
+# and manually edit (sigh...)
+# an exemple for subplot titles:
+for i,ann in enumerate(fig.layout.annotations):
+    ann.text="Plot_"+str(i) 
+# to add an annotation,
+# fig.add_annotation()
+
+
 
 # 2. Using ??
